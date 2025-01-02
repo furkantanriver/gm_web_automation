@@ -35,8 +35,8 @@ Projeyi çalıştırmadan önce aşağıdaki yazılımların yüklü olduğundan
 
 1. Depoyu klonlayın:
    ```bash
-   git clone https://github.com/kullanici/proje-adi.git
-   cd proje-adi
+   git clone https://github.com/furkantanriver/gm_web_automation.git
+   cd gm_web_automation
 
 ## Testlerin Çalıştırılması ve Raporlama
 
