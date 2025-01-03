@@ -45,5 +45,5 @@ Projeyi çalıştırmadan önce aşağıdaki yazılımların yüklü olduğundan
    gradle test
 2. Raporları oluşturun ve alın:
     ```bash
-   gradle allureReport
-   gradle allureServe
+   allure serve
+   
