@@ -27,11 +27,6 @@ public class BasketPage extends BasePage {
      */
 
     public void changeBasket() {
-        PhoneDetailPage phoneDetailPage = new PhoneDetailPage(driver);
-        phoneDetailPage.addToCart();
-        Log.pass("Sepete gidiliyor...");
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", myBasket);
-        Log.pass("Sepete gidildi");
         String basketCountText = basketCount.getText();
         Assert.assertEquals(basketCountText, "(2 Ürün)", "Sepette hatalı ürün adedi mevcut !!!");
         Log.pass("Sepette " + basketCountText + " bulundu");
@@ -43,4 +38,16 @@ public class BasketPage extends BasePage {
         Log.pass("Sepette mevcut ürün sayısı: " + newBasketCount);
 
     }
+
+    /**
+     * Sepete gidildiğini kontrol eder.
+     */
+    public void redirectBasketPage() {
+        Log.pass("Sepete gidiliyor...");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", myBasket);
+        String url = driver.getCurrentUrl();
+        Assert.assertEquals(url, "https://getmobil.com/sepetim/", "Sepete gidilmedi !!!");
+        Log.pass("Sepete gidildi: " + url);
+    }
+
 }

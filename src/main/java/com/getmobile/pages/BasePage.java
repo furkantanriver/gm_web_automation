@@ -1,11 +1,16 @@
 package com.getmobile.pages;
 
 import com.getmobile.Log;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+import java.time.Duration;
 import java.util.List;
 
 public class BasePage {
@@ -26,6 +31,21 @@ public class BasePage {
 
     public String getPageTitle() {
         return driver.getTitle();
+    }
+
+    /**
+     * Sayfanın doğru şekilde yüklendiğini kontrol eder.
+     */
+    public void waitForPageToLoad(long timeOutInSeconds) {
+        ExpectedCondition<Boolean> expectation = driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+        try {
+            Log.pass("Sayfanın yüklenmesi bekleniyor...");
+            var wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
+            wait.until(expectation);
+            Log.pass("Sayfa " + timeOutInSeconds + " Saniyeden Önce Yüklendi");
+        } catch (TimeoutException timeoutException) {
+            Log.fail("Sayfa Yükleme İsteğinin Tamamlanmasını Beklerken Zaman Aşımı Oluştu " + timeOutInSeconds + " saniye");
+        }
     }
 
     /**

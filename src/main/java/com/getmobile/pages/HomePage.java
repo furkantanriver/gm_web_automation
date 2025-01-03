@@ -4,7 +4,6 @@ import com.getmobile.Log;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -21,22 +20,9 @@ public class HomePage extends BasePage {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
     /**
-     * Sayfanın 3 saniye içinde doğru şekilde yüklendiğini kontrol eder.
+     * Sayfanın 3 saniyede doğru şekilde yüklendiğini kontrol eder.
      */
-    public void waitForPageToLoad(long timeOutInSeconds) {
-        ExpectedCondition<Boolean> expectation = driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-        try {
-            Log.pass("Sayfanın yüklenmesi bekleniyor...");
-            var wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
-            wait.until(expectation);
-            Log.pass("Sayfa 3 Saniyeden Önce Yüklendi");
-        } catch (TimeoutException timeoutException) {
-            Log.fail("Sayfa Yükleme İsteğinin Tamamlanmasını Beklerken Zaman Aşımı Oluştu " + timeOutInSeconds + " saniye");
-        }
-    }
-
     public void navigateToHomePage() {
         driver.get("https://getmobil.com");
         waitForPageToLoad(3);
