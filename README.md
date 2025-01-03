@@ -40,7 +40,7 @@ Projeyi çalıştırmadan önce aşağıdaki yazılımların yüklü olduğundan
 
 ## Testlerin Çalıştırılması ve Raporlama
 
-1. Depoyu klonlayın:
+1. Testleri başlatın:
    ```bash
    gradle test
 2. Raporları oluşturun ve alın:
